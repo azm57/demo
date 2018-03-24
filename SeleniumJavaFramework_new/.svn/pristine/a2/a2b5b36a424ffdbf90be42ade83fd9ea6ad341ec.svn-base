@@ -1,0 +1,6 @@
+package com.epam.utils;
+
+public class Const_GlobalVar {
+	public static String ProdTitle	="";
+	public static String ProdPrice	="";
+}

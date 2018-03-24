@@ -1,0 +1,67 @@
+package com.epam.objectLib;
+
+import java.awt.AWTException;
+//import java.util.ArrayList;
+//import java.util.List;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+
+import com.epam.fixtures.WebTableUtil;
+import com.epam.utils.driver.Browser;
+
+
+public class PolStn {
+	
+	WebDriver driver = Browser.getDriver();
+
+	@FindBy(how = How.XPATH, using = ".//*[@id='state']")
+	WebElement lstState;
+	
+	@FindBy(how = How.XPATH, using = ".//*[@id='district']")
+	WebElement lstDistrict;
+	
+	@FindBy(how = How.XPATH, using = ".//*[@id='LocatePSAction_search']")
+	WebElement btnGo;
+	
+	@FindBy(how = How.XPATH, using = ".//*[@id='psListId']")
+	WebElement tblPolStn;
+	
+	public void ClickOnGo() {
+		btnGo.click();
+	}
+	
+	public void HandlePopUp() throws InterruptedException, AWTException 
+	{
+		// switch to popup window
+		// perform operations on popup
+		Thread.sleep(5000);
+		Alert a = driver.switchTo().alert();
+		a.dismiss();
+	}
+	
+	public void FillData() throws Exception
+	{
+		com.epam.fixtures.ActionsUtil.gFunc_SelectValue(lstState, "Andhra Pradesh");
+		Thread.sleep(3000);
+		
+		com.epam.fixtures.ActionsUtil.gFunc_SelectValue(lstDistrict, "Anantapur");
+		Thread.sleep(3000);
+		
+		com.epam.fixtures.ActionsUtil.gFunc_ClickElement(btnGo);
+		Thread.sleep(5000);
+	}
+	
+	public void CountTableRows()
+	{
+		//List<WebElement> l = new ArrayList<WebElement>();
+		/*l = driver.findElements(By.xpath("//table[@id='psListId']/tbody/tr"));
+		System.out.println(l.size());*/
+		WebTableUtil wb=new WebTableUtil();
+		System.out.println(wb.getTableRowCount("//table[@id='psListId']"));
+	}
+
+}

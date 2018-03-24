@@ -1,0 +1,147 @@
+package com.epam.utils.driver;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.safari.SafariDriver;
+import org.testng.annotations.Optional;
+
+
+
+public class Browser {
+
+	public static WebDriver Driver;
+
+	private static ThreadLocal<WebDriver> ThreadDriver = null;
+
+	public static String baseUrl;
+	public static String username;
+	public static String password;
+	public static String intMinWait;
+	public static String intMidWait;
+	public static long intMaxWait;
+	public static long strPollingEvery;
+	public static String browserHandle;
+	public static String strDriverClassName;
+	public static String strDriverURL;
+	public static String strDriverUserName;
+	public static String strDriverPassword;
+	public static String strBrowserType;
+
+	public static void IntilizeBrowser( String strBrowserType) throws IOException
+	{
+
+		try
+		{
+			//  To kill all the processes.
+			Runtime.getRuntime().exec("taskkill /F /IM Firefox.exe");
+			//Runtime.getRuntime().exec("taskkill /F /IM Chrome.exe");
+			Runtime.getRuntime().exec("taskkill /F /IM Iexplore.exe");
+
+			ReadPropertiesData();
+			
+			// Thread local is the class which creates separate instance of webdriver for every thread.
+			
+			ThreadDriver = new ThreadLocal<>();
+			Driver = ThreadDriver.get();
+			
+			if(Driver == null)
+			{
+				if(strBrowserType.equalsIgnoreCase("Chrome"))
+				{
+					//System.setProperty("webdriver.chrome.driver", "C:\\Users\\smothkuri\\workspace\\Resources\\chromedriver.exe");
+					System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\chromedriver.exe");
+					Driver = new ChromeDriver();
+					ThreadDriver.set(Driver);
+				} 
+				else if(strBrowserType.equalsIgnoreCase("IE")) 
+				{
+					System.setProperty("webdriver.ie.driver", "/src/test/resources/IEDriver.exe");
+					Driver =new InternetExplorerDriver();
+					ThreadDriver.set(Driver);
+				} 
+				else if(strBrowserType.equalsIgnoreCase("safari"))
+				{
+					System.setProperty("webdriver.ie.driver", "/src/test/resources/SafariDriver.exe");
+					Driver = new SafariDriver();
+				} 
+				else if(strBrowserType.equalsIgnoreCase("firefox")) 
+				{
+					
+					System.setProperty("webdriver.firefox.bin", "C://Users//vnarava//AppData//Local//Mozilla Firefox//firefox.exe");
+					Driver = new FirefoxDriver();
+					ThreadDriver.set(Driver);
+				}
+			}
+			NavigateToURL(baseUrl);
+		}
+		catch(WebDriverException we)
+		{
+			System.out.println(we.getMessage()+"Occurred....");
+		}
+	}
+
+	public static WebDriver getDriver()
+	{
+
+		return ThreadDriver.get();
+	}
+
+	public static void NavigateToURL(String baseUrl)
+	{
+		Driver.navigate().to(baseUrl);
+		Driver.manage().window().maximize();
+	}
+
+	public static String strGetWindowTitle()
+	{
+		return Driver.getTitle();
+	}
+
+	public static void ReadPropertiesData() 
+	{
+		try
+		{
+
+			String resourceName = "GenericConfig.properties";
+			ClassLoader loader = Thread.currentThread().getContextClassLoader();
+			Properties properties = new Properties();
+			try(InputStream  resourceStream =loader.getResourceAsStream(resourceName))
+			{
+				properties.load(resourceStream);
+			}
+			intMinWait = properties.getProperty("gMinWait");
+			intMidWait = properties.getProperty("gMidWait");
+			intMaxWait = Long.valueOf(properties.getProperty("gMaxWait"));
+			strPollingEvery =Long.valueOf(properties.getProperty("gPollTime"));
+			baseUrl = properties.getProperty("gAppURL");
+			strDriverClassName = properties.getProperty("gDriverClassName");
+			strDriverURL = properties.getProperty("gDriverURL");
+			strDriverUserName  = properties.getProperty("gDriverUserName");
+			strDriverPassword = properties.getProperty("gDriverPassword");
+			strBrowserType  = properties.getProperty("BrowserType");
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getMessage()+"occurred...");
+		}
+
+	}
+
+	//@BeforeTest
+	//@Parameters({"browser"})
+	public static void setup(@Optional("Firefox") String browser) throws IOException
+	{
+
+		IntilizeBrowser(browser);
+		browserHandle= getDriver().getWindowHandle();
+
+	}
+
+}

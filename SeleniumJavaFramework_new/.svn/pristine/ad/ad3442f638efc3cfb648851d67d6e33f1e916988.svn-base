@@ -1,0 +1,39 @@
+package com.epam.objectLib;
+
+import org.openqa.selenium.support.PageFactory;
+
+import com.epam.utils.driver.Browser;
+
+public class ObjectLibraryWrapper {
+
+	
+	public static HomePage getObjHomePage()
+	{
+		return PageFactory.initElements(Browser.getDriver(), HomePage.class);
+	}
+	
+	public static NavFeeCalculator getObjNavFeeCalculator()
+	{
+		return PageFactory.initElements(Browser.getDriver(), NavFeeCalculator.class);
+	}
+	
+	public static FeeCal getObjFeeCal()
+	{
+		return PageFactory.initElements(Browser.getDriver(), FeeCal.class);
+	}
+	
+	public static PolStn getObjPolStn()
+	{
+		return PageFactory.initElements(Browser.getDriver(), PolStn.class);
+	}
+	
+	public static Store_HomePage getObjStore_HomePage()
+	{
+		return PageFactory.initElements(Browser.getDriver(), Store_HomePage.class);
+	}
+	
+	public static Store_Products getObjStore_Products()
+	{
+		return PageFactory.initElements(Browser.getDriver(), Store_Products.class);
+	}
+}

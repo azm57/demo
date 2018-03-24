@@ -1,0 +1,64 @@
+package StepDefinitions;
+	
+//import com.epam.objectLib.ObjectLibraryWrapper;
+
+import java.io.IOException;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import com.epam.utils.driver.Browser;
+
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
+public class MyAppStepDefinitions {
+
+WebDriver Driver;
+
+@Given("^Launch Browser and navigate to application$")
+public void Launch_Browser_and_navigate_to_application() throws IOException  {
+		//Launch Application
+		//Browser.setup("chrome");
+	System.out.println("dshf");
+	
+System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\chromedriver.exe");
+	Driver = new ChromeDriver();
+//	Driver.navigate().to("http://google.com");
+//	Driver.manage().window().maximize();
+}
+
+@Given("^Navigate to Product Category$")
+public void Navigate_to_Product_Category() throws Throwable {
+	//Select Product Category
+//	ObjectLibraryWrapper.getObjStore_HomePage().SelectProductCategory();
+	
+	System.out.println("Nav to ProdCat");
+}
+
+@When("^user Add Products to Cart$")
+public void user_Add_Products_to_Cart() throws Throwable {
+	//Adding products to Cart
+//	ObjectLibraryWrapper.getObjStore_Products().AddProductsToCart();
+	
+	System.out.println("Add prod to cart");
+}
+
+@When("^Navigate to cart$")
+public void Navigate_to_cart() throws Throwable {
+	//Navigate to Checkout
+//	ObjectLibraryWrapper.getObjStore_Products().NavToYourCart();
+	System.out.println("Nav to cart");
+}
+
+@Then("^added products should display in cart$")
+public void added_products_should_display_in_cart() throws Throwable {
+  System.out.println("Validate cart");
+}
+
+
+	
+	
+}

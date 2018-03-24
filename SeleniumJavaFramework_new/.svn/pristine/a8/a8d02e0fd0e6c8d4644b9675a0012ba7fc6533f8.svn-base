@@ -1,0 +1,11 @@
+gMinWait =5
+gMidWait =10
+gMaxWait =15
+gPollTime =5
+gAppURL_old = http://www.passportindia.gov.in/AppOnlineProject/welcomeLink
+gAppURL = http://www.craftsvilla.com/
+gDriverClassName = Driver class name
+gDriverURL = Url of the driver
+gDriverUserName = username of the driver
+gDriverPassword = password of the driver
+BrowserType = firefox

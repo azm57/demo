@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="newSuite" parallel="tests" thread-count="2" allow-return-values="true">
+<test name="sampletest" allow-return-values="true">
+   <packages>
+      <package name="com.epam.scenarios"></package>
+   </packages>
+</test>
+</suite>

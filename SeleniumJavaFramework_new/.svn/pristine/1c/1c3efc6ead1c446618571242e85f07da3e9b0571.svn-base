@@ -1,0 +1,10 @@
+Feature: Demo Application Testing
+
+Scenario: Add Products to Cart
+
+Given Launch Browser and navigate to application
+And Navigate to Product Category
+When user Add Products to Cart
+And Navigate to cart
+Then added products should display in cart
+ 

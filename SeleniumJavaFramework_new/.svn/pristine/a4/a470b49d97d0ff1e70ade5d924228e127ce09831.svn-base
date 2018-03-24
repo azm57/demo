@@ -1,0 +1,48 @@
+package com.epam.utils;
+
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Properties;
+
+public class ConfigReader {
+Properties pro;
+
+public void ConfigReader() {
+	
+	String resourceName = "GenericConfig.properties";
+	ClassLoader loader = Thread.currentThread().getContextClassLoader();
+	Properties properties = new Properties();
+	try(InputStream  resourceStream =loader.getResourceAsStream(resourceName))
+	{
+		properties.load(resourceStream);
+	}
+	
+//File src = new File("/SeleniumStartUpFramework/src/main/resources/GenericConfig.properties");
+//try {
+//FileInputStream fis = new FileInputStream(src);
+//pro = new Properties();
+//pro.load(fis);
+//}
+catch (Exception e) {
+// TODO Auto-generated catch block
+e.printStackTrace();
+System.out.println("Exception is " + e.getMessage());
+}
+HashMap<String, String> mymap = new HashMap<String, String>();
+
+for (String key : pro.stringPropertyNames()) {
+            String value = pro.getProperty(key);
+            mymap.put(key, value);
+}
+for (Object key : mymap.keySet()) {
+             System.out.println("Key : " + key.toString() + " Value : " + mymap.get(key));
+}
+
+}
+public static void main(String[] args)
+     {
+	ConfigReader obj = new ConfigReader();
+obj.ConfigReader();
+     }             
+
+}

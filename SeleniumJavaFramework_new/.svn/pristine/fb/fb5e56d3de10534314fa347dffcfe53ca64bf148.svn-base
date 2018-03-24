@@ -1,0 +1,83 @@
+package com.epam.scenarios;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.testng.annotations.Test;
+
+import com.epam.objectLib.ObjectLibraryWrapper;
+import com.epam.utils.driver.Browser;
+
+public class VerifyHomePage 
+
+{
+	
+	private static final Logger log4j = LogManager.getLogger(VerifyHomePage.class.getName());
+	
+	@Test
+	public static void navigateToAboutUs() throws Exception  
+	{
+		
+		Browser.setup("firefox");
+		ObjectLibraryWrapper.getObjStore_HomePage().SelectProductCategory();
+//		log4j.trace("This is a trace message."); 
+//		log4j.debug("This is  a debug message."); 
+//		log4j.info("This is an info message."); 
+//		log4j.error("This is an error message");
+
+		ObjectLibraryWrapper.getObjHomePage().NavigateToPassportSevaPage();
+		
+		log4j.info("This is a Info message.");        //this is the logging statement
+		
+		ObjectLibraryWrapper.getObjNavFeeCalculator().NavigateToFeeCal();
+		ObjectLibraryWrapper.getObjFeeCal().FillData();
+//		ObjectLibraryWrapper.getObjPolStn().ClickOnGo();
+//		ObjectLibraryWrapper.getObjPolStn().HandlePopUp();
+//		ObjectLibraryWrapper.getObjPolStn().FillData();
+//		ObjectLibraryWrapper.getObjPolStn().CountTableRows();
+		
+	    //Assert.assertTrue(oHomePage.NavigateToPassportSevaPage().contains("Amazon"));
+	}
+	
+	/*@Test(dependsOnMethods = { "navigateToAboutUs"})
+	public static void clickOnFeeCal() throws IOException, InterruptedException 
+	{
+		Browser.setup("chrome");
+		//Homepage hmpage = new Homepage();
+		//hmpage.EnterTextInGoolge(driver);
+		//HomePage oHomePage = PageFactory.initElements(Browser.getDriver(), HomePage.class);
+		
+		ObjectLibraryWrapper.getObjNavFeeCalculator().NavigateToFeeCal();
+		
+	    //Assert.assertTrue(oHomePage.NavigateToPassportSevaPage().contains("Amazon"));
+	}
+	
+	@Test(dependsOnMethods = { "clickOnFeeCal"})
+	public static void fillDataInFeeCalPage() throws IOException, InterruptedException 
+	{
+		Browser.setup("chrome");
+		//Homepage hmpage = new Homepage();
+		//hmpage.EnterTextInGoolge(driver);
+		//HomePage oHomePage = PageFactory.initElements(Browser.getDriver(), HomePage.class);
+		
+		ObjectLibraryWrapper.getObjFeeCal().FillData();
+		
+	    //Assert.assertTrue(oHomePage.NavigateToPassportSevaPage().contains("Amazon"));
+	}
+	
+	@Test(dependsOnMethods = { "fillDataInFeeCalPage"})
+	public static void knwYourPolStn() throws IOException, InterruptedException 
+	{
+		Browser.setup("chrome");
+		//Homepage hmpage = new Homepage();
+		//hmpage.EnterTextInGoolge(driver);
+		//HomePage oHomePage = PageFactory.initElements(Browser.getDriver(), HomePage.class);
+		
+		ObjectLibraryWrapper.getObjPolStn().ClickOnGo();
+		ObjectLibraryWrapper.getObjPolStn().HandlePopUp();
+		ObjectLibraryWrapper.getObjPolStn().FillData();
+		ObjectLibraryWrapper.getObjPolStn().CountTableRows();
+		
+	    //Assert.assertTrue(oHomePage.NavigateToPassportSevaPage().contains("Amazon"));
+	}
+*/	
+}

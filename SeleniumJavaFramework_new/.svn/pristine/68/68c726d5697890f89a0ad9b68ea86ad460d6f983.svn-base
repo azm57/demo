@@ -1,0 +1,31 @@
+package com.epam.scenarios;
+
+import org.testng.annotations.Test;
+
+import com.epam.objectLib.ObjectLibraryWrapper;
+import com.epam.utils.driver.Browser;
+
+public class Store_Demo 
+{
+	
+	@Test
+	public static void OrderProduct() throws Exception 
+	{
+		//Launch Application
+		Browser.setup("firefox");
+
+		//Select Product Category
+		ObjectLibraryWrapper.getObjStore_HomePage().SelectProductCategory();
+		
+		//Adding products to Cart
+		ObjectLibraryWrapper.getObjStore_Products().AddProductsToCart();
+		
+		//Navigate to Checkout
+		ObjectLibraryWrapper.getObjStore_Products().NavToYourCart();
+		
+		//ObjectLibraryWrapper.getObjStore_HomePage().SelectProductCategory_New();
+		//ObjectLibraryWrapper.getObjStore_Products().AddProductsToCart_New();
+		
+	}
+
+}

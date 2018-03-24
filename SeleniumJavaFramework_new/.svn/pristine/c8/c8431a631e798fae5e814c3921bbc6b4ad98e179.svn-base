@@ -1,0 +1,28 @@
+package com.epam.objectLib;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+
+import com.epam.fixtures.ActionsUtil;
+import com.epam.utils.CustomeExceptionUtil;
+import com.epam.utils.driver.Browser;
+
+public class NavFeeCalculator {
+	
+	WebDriver driver = Browser.getDriver();
+	
+
+	@FindBy(how = How.XPATH, using = ".//*[@id='sidebarmenu1']/li[6]/a")
+	WebElement FeeCalLnk;;
+	public  void NavigateToFeeCal() throws CustomeExceptionUtil {
+		//FeeCalLnk.click();
+		//boolean boltemp = false;
+	if (!ActionsUtil.gFunc_ClickElement(FeeCalLnk))
+	{
+		throw new CustomeExceptionUtil("Fee Calculation link is not found");			
+	}
+	
+}
+}

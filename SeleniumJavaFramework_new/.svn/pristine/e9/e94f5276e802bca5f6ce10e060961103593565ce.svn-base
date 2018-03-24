@@ -1,0 +1,65 @@
+$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("MyApp.feature");
+formatter.feature({
+  "line": 1,
+  "name": "Creaftsvilla Application",
+  "description": "",
+  "id": "creaftsvilla-application",
+  "keyword": "Feature"
+});
+formatter.scenario({
+  "line": 3,
+  "name": "User Registration",
+  "description": "",
+  "id": "creaftsvilla-application;user-registration",
+  "type": "scenario",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "line": 5,
+  "name": "Launch Browser and navigate to application",
+  "keyword": "Given "
+});
+formatter.step({
+  "line": 6,
+  "name": "Read Test Data",
+  "keyword": "And "
+});
+formatter.step({
+  "line": 7,
+  "name": "Go to registration and enter all the data and click register",
+  "keyword": "When "
+});
+formatter.step({
+  "line": 8,
+  "name": "Verify successful registration",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "MyAppStepDefinitions.Launch_Browser_and_navigate_to_application()"
+});
+formatter.result({
+  "duration": 67482941,
+  "status": "passed"
+});
+formatter.match({
+  "location": "MyAppStepDefinitions.Read_Test_Data()"
+});
+formatter.result({
+  "duration": 123477,
+  "status": "passed"
+});
+formatter.match({
+  "location": "MyAppStepDefinitions.Go_to_registration_and_enter_all_the_data_and_click_register()"
+});
+formatter.result({
+  "duration": 42014,
+  "status": "passed"
+});
+formatter.match({
+  "location": "MyAppStepDefinitions.Verify_successful_registration()"
+});
+formatter.result({
+  "duration": 31751,
+  "status": "passed"
+});
+});

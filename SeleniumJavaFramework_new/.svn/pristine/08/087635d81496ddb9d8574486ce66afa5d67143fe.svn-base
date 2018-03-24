@@ -1,0 +1,29 @@
+package com.epam.objectLib;
+
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+
+import com.epam.utils.driver.Browser;
+
+public class HomePage {
+	
+	@FindBy(how = How.XPATH, using = ".//*[@id='abtUs']") 
+	WebElement lnkAbtUs;
+
+	@FindBy(how = How.XPATH, using = ".//*[@id='abtUs2']")
+	WebElement PassportSeva;
+	
+	public void NavigateToPassportSevaPage() throws InterruptedException {
+		
+		Actions a = new Actions(Browser.getDriver());
+		Thread.sleep(5000);
+		a.moveToElement(lnkAbtUs).build().perform();
+		Thread.sleep(5000);
+		a.click(PassportSeva).build().perform();
+		Thread.sleep(5000);
+		
+	}
+}

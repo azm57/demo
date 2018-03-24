@@ -1,0 +1,63 @@
+package com.epam.objectLib;
+
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+
+import com.epam.fixtures.ActionsUtil;
+import com.epam.utils.driver.Browser;
+
+
+public class FeeCal {
+	
+	WebDriver driver = Browser.getDriver();
+
+	@FindBy(how = How.XPATH, using = ".//*[@id='applicationCategory']")
+	WebElement lstSelectAppType;
+	
+	@FindBy(how = How.XPATH, using = ".//*[@id='serviceType']")
+	WebElement lstTypeOfService;
+	
+	@FindBy(how = How.XPATH, using = "//select[@id='ageType']")
+	WebElement lstApplicantsAge;
+	
+	@FindBy(how = How.XPATH, using = ".//select[@id='bookletType']")
+	WebElement lstNoOfPages;
+	
+	@FindBy(how = How.XPATH, using = ".//select[@id='schemeType']")
+	WebElement lstReqScheme;
+	
+	@FindBy(how = How.XPATH, using = ".//*[@id='calculateFee']")
+	WebElement btnCalFee;
+	
+	@FindBy(how = How.XPATH, using = ".//*[@id='sidebarmenu1']/li[8]/a")
+	WebElement lnkKnwPolStn;
+	
+	public void FillData() throws Exception {
+		ActionsUtil.gFunc_SelectValue(lstSelectAppType, "Passport");
+		//Thread.sleep(3000);
+		
+		ActionsUtil.gFunc_SelectValue(lstTypeOfService, "Fresh");
+		Thread.sleep(5000);
+		
+		ActionsUtil.gFunc_SelectValue(lstApplicantsAge, "18 Years And Above");
+		Thread.sleep(5000);
+		
+		//ScreenshotUtil.getScreenshot();
+		
+		ActionsUtil.gFunc_SelectValue(lstNoOfPages, "36 Pages");
+		Thread.sleep(3000);
+		
+		ActionsUtil.gFunc_SelectValue(lstReqScheme, "Normal");
+		Thread.sleep(3000);
+		
+		ActionsUtil.gFunc_ClickElement(btnCalFee);
+		Thread.sleep(5000);
+		
+		ActionsUtil.gFunc_ClickElement(lnkKnwPolStn);
+		Thread.sleep(5000);
+	}
+	
+}

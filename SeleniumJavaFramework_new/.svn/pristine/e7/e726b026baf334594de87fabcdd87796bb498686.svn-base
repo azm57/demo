@@ -1,0 +1,80 @@
+package com.epam.objectLib;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
+
+import com.epam.fixtures.ActionsUtil;
+import com.epam.utils.CustomeExceptionUtil;
+import com.epam.utils.driver.Browser;
+import com.epam.utils.report.Log;
+
+public class Store_HomePage {
+	
+	@FindBy(xpath= ".//*[@id='menu-item-33']/a")
+	WebElement lnkProductCat;
+	
+	@FindBy(xpath= ".//*[@id='menu-item-34']/a")
+	WebElement lnkProductCat_Accessories;
+	
+	@FindBy(xpath= ".//*[@id='menu-item-35']/a")
+	WebElement lnkProductCat_iMacs;
+	
+	@FindBy(xpath= ".//*[@id='menu-item-36']/a")
+	WebElement lnkProductCat_iPads;
+	
+	@FindBy(xpath= ".//*[@id='menu-item-37']/a")
+	WebElement lnkProductCat_iPhones;
+	
+
+	public void SelectProductCategory() throws Exception
+	{
+		
+		
+		if (!ActionsUtil.bFunc_WaitForObjectExistance(lnkProductCat))
+		{
+			Log.error("Product Category Menu not Found");
+			throw new CustomeExceptionUtil("Product Category Menu not Found");
+		}
+		else
+		{
+			Log.info("Product Category Menu Found");
+		}
+		
+		Actions a = new Actions(Browser.getDriver());
+		Thread.sleep(3000);
+		a.moveToElement(lnkProductCat).build().perform();
+		Thread.sleep(3000);
+			if (!ActionsUtil.bFunc_WaitForObjectExistance(lnkProductCat_iPhones))
+			{
+				Log.error("iPhone Option Not Found in Product Category Menu");
+				throw new CustomeExceptionUtil("iPhone Option Not Found in Product Category Menu");
+			}
+			else
+			{
+				Log.info("iPhone option found in Product Category Menu");
+			}
+		a.click(lnkProductCat_iPhones).build().perform();
+		Log.info("Successfully Selected iPhone option in Product Category");
+	}
+	
+	
+	
+	public void SelectProductCategory_New() throws Exception
+	{
+		ActionsUtil.bFunc_WaitForObjectExistance_New(lnkProductCat, "Verification of Product Category Menu", true);
+				
+		Actions a = new Actions(Browser.getDriver());
+		Thread.sleep(3000);
+		a.moveToElement(lnkProductCat).build().perform();
+		Thread.sleep(3000);
+		
+		ActionsUtil.bFunc_WaitForObjectExistance_New(lnkProductCat_iPhones, "Verification of iPhone Category in Product Category Menu", true);
+			
+		a.click(lnkProductCat_iPhones).build().perform();
+		Log.info("Successfully Selected iPhone option in Product Category");
+	}
+	
+	
+}

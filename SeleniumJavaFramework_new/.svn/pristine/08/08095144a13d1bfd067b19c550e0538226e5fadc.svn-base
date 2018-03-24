@@ -1,0 +1,9 @@
+2016-11-07 13:14:06,375 main INFO  report.Log - SignIn Link found and clicked successfully
+2016-11-07 13:14:07,591 main INFO  report.Log - Email entered successfully
+2016-11-07 13:14:07,751 main INFO  report.Log - Password entered successfully
+2016-11-07 13:14:08,795 main INFO  report.Log - SignIn button found and clicked successfully
+2016-11-07 13:14:10,277 main INFO  report.Log - Clicked on Product Category successfully
+2016-11-07 13:14:12,367 main INFO  report.Log - Clicked on Product Sub Category successfully
+2016-11-07 13:14:13,709 main INFO  report.Log - Product: 0 found and clicked successfully
+2016-11-07 13:14:18,567 main INFO  report.Log - Product: 0Name, Price found and saved successfully
+2016-11-07 13:14:19,815 main INFO  report.Log - Product: 0is added to cart Successfully

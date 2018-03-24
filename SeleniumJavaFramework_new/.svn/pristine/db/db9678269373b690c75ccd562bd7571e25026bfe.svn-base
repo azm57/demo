@@ -1,0 +1,31 @@
+2016-11-08 15:12:58,503 main INFO  report.Log - SignIn Link found and clicked successfully
+2016-11-08 15:12:58,726 main INFO  report.Log - Email entered successfully
+2016-11-08 15:12:58,948 main INFO  report.Log - Password entered successfully
+2016-11-08 15:13:01,060 main INFO  report.Log - SignIn button found and clicked successfully
+2016-11-08 15:13:02,464 main INFO  report.Log - Clicked on Product Category successfully
+2016-11-08 15:13:04,144 main INFO  report.Log - Clicked on Product Sub Category successfully
+2016-11-08 15:13:05,366 main INFO  report.Log - Product: 0 found and clicked successfully
+2016-11-08 15:13:09,875 main INFO  report.Log - Product: 0Name, Price found and saved successfully
+2016-11-08 15:13:11,067 main INFO  report.Log - Product: 0is added to cart Successfully
+2016-11-08 15:13:16,885 main INFO  report.Log - Add to Cart Success Message is displayed
+2016-11-08 15:13:20,141 main INFO  report.Log - Product: 1 found and clicked successfully
+2016-11-08 15:13:23,587 main INFO  report.Log - Product: 1Name, Price found and saved successfully
+2016-11-08 15:13:24,772 main INFO  report.Log - Product: 1is added to cart Successfully
+2016-11-08 15:13:30,491 main INFO  report.Log - Add to Cart Success Message is displayed
+2016-11-08 15:13:33,710 main INFO  report.Log - Product: 2 found and clicked successfully
+2016-11-08 15:13:37,284 main INFO  report.Log - Product: 2Name, Price found and saved successfully
+2016-11-08 15:13:38,469 main INFO  report.Log - Product: 2is added to cart Successfully
+2016-11-08 15:13:43,971 main INFO  report.Log - Add to Cart Success Message is displayed
+2016-11-08 15:13:47,240 main INFO  report.Log - Product: 3 found and clicked successfully
+2016-11-08 15:13:50,541 main INFO  report.Log - Product: 3Name, Price found and saved successfully
+2016-11-08 15:13:51,726 main INFO  report.Log - Product: 3is added to cart Successfully
+2016-11-08 15:13:57,450 main INFO  report.Log - Add to Cart Success Message is displayed
+2016-11-08 15:14:00,756 main INFO  report.Log - Cart link is found and clicked successfully
+2016-11-08 15:14:09,493 main INFO  report.Log - Product0 name found and verified successfully
+2016-11-08 15:14:09,552 main INFO  report.Log - Product0 price found and verified sucessfully
+2016-11-08 15:14:09,618 main INFO  report.Log - Product1 name found and verified successfully
+2016-11-08 15:14:09,670 main INFO  report.Log - Product1 price found and verified sucessfully
+2016-11-08 15:14:09,736 main INFO  report.Log - Product2 name found and verified successfully
+2016-11-08 15:14:09,790 main INFO  report.Log - Product2 price found and verified sucessfully
+2016-11-08 15:14:09,852 main INFO  report.Log - Product3 name found and verified successfully
+2016-11-08 15:14:09,906 main INFO  report.Log - Product3 price found and verified sucessfully

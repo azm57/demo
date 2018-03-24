@@ -1,0 +1,211 @@
+package com.epam.fixtures;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Select;
+
+import com.epam.utils.CustomeExceptionUtil;
+import com.epam.utils.driver.Browser;
+import com.epam.utils.report.Log;
+import com.google.common.base.Function;
+
+
+public class ActionsUtil {
+	
+	
+	public static boolean gFunc_ClickElement(WebElement eleWebElement)
+	{
+		boolean blnStatus = false; 
+		try
+		{
+			blnStatus = bFunc_WaitForObjectExistance(eleWebElement);
+			if(blnStatus)
+			{
+				eleWebElement.click();
+			}
+		}
+		catch(Exception e){}		
+		return blnStatus;
+	}
+	
+	public static boolean gFunc_SendText(WebElement eleWebElement,String strText) throws Exception
+	{
+		boolean blnStatus = false; 
+		try
+		{
+			blnStatus = bFunc_WaitForObjectExistance(eleWebElement);
+			if(blnStatus)
+			{
+				eleWebElement.sendKeys(strText);
+			}
+		}
+		catch(NoSuchElementException e){}
+		return blnStatus;
+	}
+	public static boolean gFunc_SelectValue(WebElement eleWebElement,String strText) throws Exception
+	{
+		boolean blnStatus = false; 
+		try
+		{
+			blnStatus = bFunc_WaitForObjectExistance(eleWebElement);
+			if(blnStatus)
+			{
+				Select oSelect = new Select(eleWebElement);
+				String[] arrSplit = strText.split(",");
+				for (int i=0; i< arrSplit.length; i++)
+				{
+					oSelect.selectByVisibleText(arrSplit[i]);
+				}
+			}
+		}
+		catch(NoSuchElementException e){}
+		return blnStatus;
+	}
+	public static boolean bFunc_WaitForObjectExistance(final WebElement element) throws Exception
+	{
+		boolean blnStatus = false;
+		//boolean handleAlert = false;
+		try
+		{
+			FluentWait<WebDriver> wait = new FluentWait<WebDriver>(Browser.getDriver());
+			wait.pollingEvery(Browser.strPollingEvery,  TimeUnit.SECONDS);
+			wait.withTimeout(Browser.intMaxWait, TimeUnit.SECONDS);
+			Function<WebDriver, Boolean> function = new Function<WebDriver,Boolean>(){
+				public Boolean apply(WebDriver driver) 
+				{
+					boolean blnFound = false;
+					//boolean handleAlert = false;
+					System.out.println("Waiting for Element Existance : --" + element);
+					try
+					{
+						if(element!= null && element.isDisplayed())
+						{
+							blnFound = true;
+						}
+					}
+					catch(NoSuchElementException nse)
+					{
+						blnFound = false;
+						
+					}
+					
+					return blnFound;
+				}
+			};
+			blnStatus = wait.until(function);
+		}
+		catch(Exception e){
+			blnStatus=false;
+		}
+		return blnStatus;
+	}
+	
+	
+	
+//////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////
+	
+	public static void gFunc_ClickElement_New(WebElement eleWebElement, String strMsg, boolean bolExitStatus) throws InterruptedException
+	{
+		//boolean blnStatus = false; 
+		try
+		{
+			bFunc_WaitForObjectExistance_New(eleWebElement,strMsg,true);
+			eleWebElement.click();
+			Log.info(strMsg);
+			
+		}
+		catch(Exception e){
+			Thread.sleep(3000);
+			System.out.println("xxxxx" +e.toString());
+		}
+	}
+	
+	public static void gFunc_SendText_New(WebElement eleWebElement,String strText, String strMsg, boolean bolExitStatus) throws Exception
+	{
+		boolean blnStatus = false; 
+		try
+		{
+			blnStatus = bFunc_WaitForObjectExistance(eleWebElement);
+			if(blnStatus)
+			{
+				eleWebElement.sendKeys(strText);
+			}
+		}
+		catch(NoSuchElementException e){}
+	}
+	
+	public static void gFunc_SelectValue_New(WebElement eleWebElement,String strText, String strMsg, boolean bolExitStatus) throws Exception
+	{
+		boolean blnStatus = false; 
+		try
+		{
+			blnStatus = bFunc_WaitForObjectExistance(eleWebElement);
+			if(blnStatus)
+			{
+				Select oSelect = new Select(eleWebElement);
+				String[] arrSplit = strText.split(",");
+				for (int i=0; i< arrSplit.length; i++)
+				{
+					oSelect.selectByVisibleText(arrSplit[i]);
+				}
+			}
+		}
+		catch(NoSuchElementException e){}
+	}
+	
+	public static void bFunc_WaitForObjectExistance_New(final WebElement element, String strMsg, boolean bolExitStatus) throws Exception
+	{
+		boolean blnStatus = false;
+		//boolean handleAlert = false;
+		try
+		{
+			FluentWait<WebDriver> wait = new FluentWait<WebDriver>(Browser.getDriver());
+			wait.pollingEvery(Browser.strPollingEvery,  TimeUnit.SECONDS);
+			wait.withTimeout(Browser.intMaxWait, TimeUnit.SECONDS);
+			Function<WebDriver, Boolean> function = new Function<WebDriver,Boolean>(){
+				public Boolean apply(WebDriver driver) 
+				{
+					boolean blnFound = false;
+					//boolean handleAlert = false;
+					System.out.println("Waiting for Element Existance : --" + element);
+					try
+					{
+						if(element!= null && element.isDisplayed())
+						{
+							blnFound = true;
+						}
+					}
+					catch(NoSuchElementException nse)
+					{
+						blnFound = false;
+					}
+					
+					return blnFound;
+				}
+			};
+			blnStatus = wait.until(function);
+		}
+		catch(Exception e){
+			blnStatus=false;
+		}
+		finally
+		{
+			if (!blnStatus)
+			{
+				Log.error(strMsg + " : Fail");
+				throw new CustomeExceptionUtil(strMsg + " : Fail");
+			}
+			else
+				Log.info(strMsg+ " : Pass");
+		}
+	}
+
+
+
+}

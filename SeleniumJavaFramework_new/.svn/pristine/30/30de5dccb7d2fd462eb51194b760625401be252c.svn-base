@@ -1,0 +1,148 @@
+package com.epam.objectLib;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
+
+import com.epam.fixtures.ActionsUtil;
+import com.epam.utils.driver.Browser;
+import com.epam.utils.report.Log;
+import com.epam.utils.Const_GlobalVar;
+import com.epam.utils.CustomeExceptionUtil;
+public class Store_Products {
+	WebDriver driver = Browser.getDriver();
+	
+	@FindBys({
+		@FindBy(xpath ="//div[@id='default_products_page_container']//div[@class='productcol']")
+	})
+	List<WebElement> allElementsInList;
+	
+	@FindBy(xpath= ".//*[@id='header_cart']/a")
+	WebElement lnkCheckout;
+	
+	@FindBy(xpath= ".//*[@id='post-29']/header/h1[text()='Checkout']")
+	WebElement eleHeaderCheckout;
+	
+	@FindBy(xpath= ".//*[@id='fancy_notification_content']/a[text()='Continue Shopping']")
+	WebElement eleContinueShoping;
+	
+	
+	public void AddProductsToCart() throws Exception
+	{
+		int i;
+		i=0;
+		
+		for(WebElement el : allElementsInList) {
+			i=i+1;
+			Const_GlobalVar.ProdTitle = el.findElement(By.xpath("(//a[@class='wpsc_product_title'])" + "[" + i + "]")).getText();
+			Log.info("Captured Product Tiele : " + Const_GlobalVar.ProdTitle );
+					
+			Const_GlobalVar.ProdPrice = el.findElement(By.xpath("(//div[@id='default_products_page_container']//div[@class='productcol']//span[starts-with(@class,'currentprice')])" + "[" + i + "]")).getText();
+			Log.info("Captured Product Price : " + Const_GlobalVar.ProdPrice );
+					
+			Thread.sleep(5000);
+								
+			driver.findElement(By.xpath("(//div[@id='default_products_page_container']//div[@class='productcol']//span/input[@value='Add To Cart'])" + "[" + i + "]")).click();
+			Log.info("Product: " + Const_GlobalVar.ProdTitle + " Added to Cart");
+			
+			Thread.sleep(5000);
+							
+			try{driver.findElement(By.xpath("//a[text()='Continue Shopping']")).click();}
+			catch(Exception e){}
+
+			if (i==2)	 
+				{
+					break;
+				}
+		}
+		
+	}
+	
+	public void NavToYourCart() throws Exception
+	{	
+		if (!ActionsUtil.gFunc_ClickElement(lnkCheckout))
+		{
+			//Log.error("Checkout Option not Found");
+			throw new CustomeExceptionUtil("Checkout Option not Found");			
+		}
+		else
+		{
+			Log.info("Checkout Option Found and clicked Successfully");
+		}
+		
+		if(!ActionsUtil.bFunc_WaitForObjectExistance(eleHeaderCheckout))
+		{
+			Log.error("Checkout Page not Found");
+			throw new CustomeExceptionUtil("Checkout Page not Found");			
+		}
+		else
+		{
+			Log.info("Navigated to Checkout Page Successfully");
+		}
+		
+		
+	}
+	
+	
+	public void AddProductsToCart_New() throws Exception
+	{
+		int i;
+		i=0;
+		
+		for(WebElement el : allElementsInList) {
+			i=i+1;
+						
+			Const_GlobalVar.ProdTitle = el.findElement(By.xpath("(//a[@class='wpsc_product_title'])" + "[" + i + "]")).getText();
+			Log.info("Captured Product Tiele : " + Const_GlobalVar.ProdTitle );
+					
+			Const_GlobalVar.ProdPrice = el.findElement(By.xpath("(//div[@id='default_products_page_container']//div[@class='productcol']//span[starts-with(@class,'currentprice')])" + "[" + i + "]")).getText();
+			Log.info("Captured Product Price : " + Const_GlobalVar.ProdPrice );
+					
+			Thread.sleep(5000);
+			
+			WebElement x = el.findElement(By.xpath("(//div[@id='default_products_page_container']//div[@class='productcol']//span/input[@value='Add To Cart'])" + "[" + i + "]"));
+			ActionsUtil.gFunc_ClickElement_New(x, "Clcick on Add Product to Cart", true);
+			Log.info("Product: " + Const_GlobalVar.ProdTitle + " Added to Cart");
+			
+			Thread.sleep(5000);
+			
+			WebElement y = driver.findElement(By.xpath("//a[text()='Continue Shopping']"));
+			ActionsUtil.gFunc_ClickElement_New(y, "Clcick on Continue Shoping Button", true);
+			
+			if (i==2)	 
+				{
+					break;
+				}
+		}
+	}
+	
+	public void NavToYourCart_New() throws Exception
+	{	
+		if (!ActionsUtil.gFunc_ClickElement(lnkCheckout))
+		{
+			//Log.error("Checkout Option not Found");
+			throw new CustomeExceptionUtil("Checkout Option not Found");			
+		}
+		else
+		{
+			Log.info("Checkout Option Found and clicked Successfully");
+		}
+		
+		if(!ActionsUtil.bFunc_WaitForObjectExistance(eleHeaderCheckout))
+		{
+			Log.error("Checkout Page not Found");
+			throw new CustomeExceptionUtil("Checkout Page not Found");			
+		}
+		else
+		{
+			Log.info("Navigated to Checkout Page Successfully");
+		}
+		
+		
+	}
+	
+}
