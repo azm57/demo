@@ -2,12 +2,12 @@
 <testng-results skipped="0" failed="1" total="1" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="54116" started-at="2018-03-14T16:36:10Z" finished-at="2018-03-14T16:37:04Z">
+  <suite name="Default suite" duration-ms="77039" started-at="2018-06-05T16:07:00Z" finished-at="2018-06-05T16:08:17Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="54116" started-at="2018-03-14T16:36:10Z" finished-at="2018-03-14T16:37:04Z">
+    <test name="Default test" duration-ms="77039" started-at="2018-06-05T16:07:00Z" finished-at="2018-06-05T16:08:17Z">
       <class name="com.epam.scenarios.Craftsvilla">
-        <test-method status="FAIL" signature="CartList()[pri:0, instance:com.epam.scenarios.Craftsvilla@cb644e]" name="CartList" duration-ms="54036" started-at="2018-03-14T22:06:10Z" finished-at="2018-03-14T22:07:04Z">
+        <test-method status="FAIL" signature="CartList()[pri:0, instance:com.epam.scenarios.Craftsvilla@cb644e]" name="CartList" duration-ms="76968" started-at="2018-06-05T21:37:00Z" finished-at="2018-06-05T21:38:17Z">
           <exception class="com.epam.utils.CustomeExceptionUtil">
             <message>
               <![CDATA[Email Field not found]]>
